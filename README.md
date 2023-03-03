@@ -205,7 +205,7 @@ If you like this project leave a star on this repository
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I give credit to my coding partners who's insights helped in making this project a success
+I give credit to [Murat Kokmaz](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign) who's design was used in the creation of this project
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
