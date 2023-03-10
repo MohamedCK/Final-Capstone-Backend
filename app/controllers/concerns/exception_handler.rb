@@ -1,18 +1,12 @@
 module ExceptionHandler
   extend ActiveSupport::Concern
-
   included do
-    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
-    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
-  end
+    rescue_from ActiveRecord::RecordNotFound do |e|
+      json_response({ code: 404, message: e.message }, :not_found)
+    end
 
-  private
-
-  def render_not_found(exception)
-    json_response({ error: exception.message }, status: :not_found)
-  end
-
-  def render_unprocessable_entity(exception)
-    json_response({ error: exception.message }, status: :unprocessable_entity)
+    rescue_from ActiveRecord::RecordInvalid do |e|
+      json_response({ code: 422, message: e.message }, :unprocessable_entity)
+    end
   end
 end
