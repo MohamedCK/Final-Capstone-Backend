@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { in: 1..50 }, uniqueness: true
   validates :password, presence: true, length: { in: 6..20 }
 
-  def admin_role? 
+  def admin? 
     role == "admin" 
   end
 end

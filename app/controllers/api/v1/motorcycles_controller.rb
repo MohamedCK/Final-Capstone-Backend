@@ -12,7 +12,7 @@ class Api::V1::MotorcyclesController < ApplicationController
   end
 
   def create
-    if current_user.admin_role?
+    if current_user.admin?
       motorcycle = Motorcycle.new(motorcycle_params)
       if motorcycle.save
         render json: {
@@ -29,7 +29,7 @@ class Api::V1::MotorcyclesController < ApplicationController
   end
 
   def update
-    if current_user.admin_role?
+    if current_user.admin?
       if @motorcycle.update(motorcycle_params)
         render json: {
           status: 200,
@@ -45,7 +45,7 @@ class Api::V1::MotorcyclesController < ApplicationController
   end
 
   def all_motorcycles
-    if current_user.admin_role?
+    if current_user.admin?
       @motorcycles = Motorcycle.all
       render json: @motorcycles, status: :ok
     else
@@ -54,7 +54,7 @@ class Api::V1::MotorcyclesController < ApplicationController
   end
 
   def availability
-    if current_user.admin_role?
+    if current_user.admin?
       if @motorcycle.update(motorcycle_availability_params)
         render motorcyle_available? ? render_available : render_unavailable
       else
